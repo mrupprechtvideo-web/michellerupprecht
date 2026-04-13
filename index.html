@@ -52,10 +52,7 @@
     .btn-filled:hover { background: var(--terra); border-color: var(--terra); }
     .clients-strip { border-top: 1px solid rgba(217,162,115,0.12); border-bottom: 1px solid rgba(217,162,115,0.12); padding: 2.5rem 0; margin-top: 4rem; }
     .clients-label { font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-dim); text-align: center; margin-bottom: 1.75rem; }
-    .clients-row { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 2rem 3.5rem; }
-    .client-logo { height: 36px; width: auto; max-width: 130px; object-fit: contain; filter: brightness(0) invert(1) brightness(0.72) sepia(0.15); opacity: 0.65; transition: opacity 0.25s, filter 0.25s; }
-    .client-logo:hover { opacity: 1; filter: brightness(0) invert(1) brightness(0.9) sepia(0.3) saturate(1.5); }
-    .client-logo.featured { height: 44px; max-width: 155px; opacity: 0.8; }
+    .clients-logo-img { width: 100%; max-width: 1100px; display: block; margin: 0 auto; opacity: 0.85; }
     .testimonials { padding: 5rem 0; }
     .section-label { font-size: 0.65rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--terra); margin-bottom: 0.75rem; }
     .section-title { font-family: 'Bebas Neue', sans-serif; font-size: clamp(2rem,5vw,3.5rem); letter-spacing: 0.05em; color: var(--white); margin-bottom: 3rem; }
@@ -183,14 +180,7 @@
         </div>
         <div class="clients-strip">
           <p class="clients-label">Clients &amp; Collaborators</p>
-          <div class="clients-row">
-            <img class="client-logo featured" src="CU_logo.png" alt="University of Colorado Boulder" />
-            <img class="client-logo featured" src="city_of_boulder_logo.png" alt="City of Boulder" />
-            <img class="client-logo" src="huish_outdoors_logo.png" alt="Huish Outdoors" />
-            <img class="client-logo" src="derranged_penguin_productions_logi.png" alt="Deranged Penguin Productions" />
-            <img class="client-logo" src="The-Solo-Salon-Logo-1200px.jpg" alt="The Solo Salon" />
-            <img class="client-logo" src="enercom_logo.png" alt="Enercom" />
-          </div>
+          <img class="clients-logo-img" src="logos_updated.png" alt="Clients and Collaborators" />
         </div>
         <div class="testimonials">
           <p class="section-label">What People Say</p>
