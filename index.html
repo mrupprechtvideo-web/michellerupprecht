@@ -1,0 +1,1132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Michelle Rupprecht — Video Editor & Media Producer</title>
+  <meta name="description" content="Michelle Rupprecht is a video editor and media producer with 10+ years of experience in documentary film, narrative production, live broadcast, and social content." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Bebas+Neue&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:        #1a0e09;
+      --bg2:       #241208;
+      --brown:     #401F0D;
+      --accent:    #D9A273;
+      --terra:     #BF815E;
+      --text:      #D9D0C1;
+      --text-dim:  #9a8e82;
+      --white:     #f5f0eb;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 300;
+      overflow-x: hidden;
+    }
+
+    /* ── NOISE OVERLAY ── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 1000;
+      opacity: 0.35;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 900;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1rem 2.5rem;
+      background: rgba(26, 14, 9, 0.88);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(217, 162, 115, 0.12);
+    }
+
+    .nav-brand {
+      display: flex;
+      align-items: center;
+      gap: 0.85rem;
+      text-decoration: none;
+    }
+
+    .nav-avatar {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid var(--accent);
+      display: block;
+      background: var(--brown);
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+
+    .nav-avatar-placeholder {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      border: 2px solid var(--accent);
+      background: var(--brown);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.6rem;
+      color: var(--accent);
+      text-align: center;
+      line-height: 1.2;
+      flex-shrink: 0;
+    }
+
+    .nav-name-block { display: flex; flex-direction: column; }
+    .nav-name {
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 500;
+      font-size: 0.9rem;
+      color: var(--white);
+      letter-spacing: 0.03em;
+      line-height: 1.2;
+    }
+    .nav-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 0.75rem;
+      color: var(--accent);
+      letter-spacing: 0.05em;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+    .nav-links a {
+      font-size: 0.72rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--text-dim);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--accent); }
+
+    /* hamburger */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 4px;
+    }
+    .hamburger span {
+      display: block;
+      width: 24px;
+      height: 1.5px;
+      background: var(--text);
+      transition: all 0.3s;
+    }
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      top: 65px; left: 0; right: 0;
+      background: rgba(26, 14, 9, 0.97);
+      padding: 1.5rem 2.5rem;
+      z-index: 890;
+      border-bottom: 1px solid rgba(217,162,115,0.12);
+    }
+    .mobile-menu.open { display: block; }
+    .mobile-menu a {
+      display: block;
+      padding: 0.75rem 0;
+      font-size: 0.8rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--text-dim);
+      text-decoration: none;
+      border-bottom: 1px solid rgba(217,162,115,0.08);
+    }
+    .mobile-menu a:hover { color: var(--accent); }
+
+    /* ── SECTIONS ── */
+    section { padding: 5rem 0; }
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 2.5rem; }
+
+    /* ── HERO ── */
+    #home {
+      padding-top: 8rem;
+      padding-bottom: 4rem;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .hero-headline {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(4rem, 10vw, 9rem);
+      line-height: 0.92;
+      letter-spacing: 0.02em;
+      margin-bottom: 2.5rem;
+    }
+    .hero-headline .line1 { color: var(--white); display: block; }
+    .hero-headline .line2 { color: var(--accent); display: block; }
+    .hero-headline .line3 { color: var(--white); display: block; }
+
+    .reel-wrapper {
+      position: relative;
+      width: 100%;
+      padding-bottom: 56.25%;
+      background: #0d0704;
+      border: 1px solid rgba(217,162,115,0.15);
+      margin-bottom: 3rem;
+      overflow: hidden;
+    }
+    .reel-wrapper iframe {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+
+    .bio-block {
+      max-width: 680px;
+    }
+    .bio-block p {
+      font-size: 1.05rem;
+      line-height: 1.8;
+      color: var(--text);
+      margin-bottom: 1.5rem;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 0.75rem 1.75rem;
+      font-size: 0.72rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      text-decoration: none;
+      border: 1px solid var(--accent);
+      color: var(--accent);
+      transition: all 0.25s;
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 500;
+    }
+    .btn:hover {
+      background: var(--accent);
+      color: var(--bg);
+    }
+    .btn-filled {
+      background: var(--accent);
+      color: var(--bg);
+    }
+    .btn-filled:hover {
+      background: var(--terra);
+      border-color: var(--terra);
+    }
+
+    /* ── CLIENTS ── */
+    .clients-strip {
+      border-top: 1px solid rgba(217,162,115,0.12);
+      border-bottom: 1px solid rgba(217,162,115,0.12);
+      padding: 2rem 0;
+      margin-top: 4rem;
+      overflow: hidden;
+    }
+    .clients-label {
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--text-dim);
+      text-align: center;
+      margin-bottom: 1.25rem;
+    }
+    .clients-row {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      gap: 1rem 2.5rem;
+    }
+    .client-name {
+      font-size: 0.7rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--text-dim);
+      white-space: nowrap;
+      transition: color 0.2s;
+    }
+    .client-name:hover { color: var(--accent); }
+    .client-name.featured { color: var(--accent); }
+
+    /* ── TESTIMONIALS ── */
+    .testimonials {
+      padding: 5rem 0;
+    }
+    .section-label {
+      font-size: 0.65rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--terra);
+      margin-bottom: 0.75rem;
+    }
+    .section-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      letter-spacing: 0.05em;
+      color: var(--white);
+      margin-bottom: 3rem;
+    }
+    .section-title span { color: var(--accent); }
+
+    .testi-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+    .testi-card {
+      background: rgba(64, 31, 13, 0.35);
+      border: 1px solid rgba(217,162,115,0.12);
+      padding: 2rem;
+      position: relative;
+    }
+    .testi-card::before {
+      content: '"';
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 5rem;
+      color: var(--accent);
+      opacity: 0.25;
+      position: absolute;
+      top: 0.5rem;
+      left: 1.25rem;
+      line-height: 1;
+    }
+    .testi-text {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 1.1rem;
+      line-height: 1.7;
+      color: var(--text);
+      margin-bottom: 1.25rem;
+      position: relative;
+      z-index: 1;
+    }
+    .testi-source {
+      font-size: 0.65rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--terra);
+    }
+
+    /* ── WORK PAGE ── */
+    #work { padding-top: 7rem; }
+
+    .work-intro {
+      margin-bottom: 4rem;
+    }
+    .work-intro p {
+      font-size: 1rem;
+      color: var(--text-dim);
+      max-width: 520px;
+      line-height: 1.7;
+      margin-top: 0.5rem;
+    }
+
+    .work-section { margin-bottom: 5rem; }
+    .work-section-header {
+      display: flex;
+      align-items: baseline;
+      gap: 1rem;
+      margin-bottom: 1.75rem;
+      padding-bottom: 0.75rem;
+      border-bottom: 1px solid rgba(217,162,115,0.15);
+    }
+    .work-section-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 2rem;
+      letter-spacing: 0.05em;
+      color: var(--white);
+    }
+    .work-section-tag {
+      font-size: 0.65rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--terra);
+      border: 1px solid var(--terra);
+      padding: 0.2rem 0.5rem;
+    }
+
+    /* carousel */
+    .carousel-outer {
+      position: relative;
+    }
+    .carousel {
+      display: flex;
+      gap: 1.25rem;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+      padding-bottom: 0.5rem;
+    }
+    .carousel::-webkit-scrollbar { display: none; }
+
+    .carousel-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 40px;
+      height: 40px;
+      background: rgba(64,31,13,0.9);
+      border: 1px solid var(--accent);
+      color: var(--accent);
+      font-size: 1.1rem;
+      cursor: pointer;
+      z-index: 10;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s;
+    }
+    .carousel-btn:hover { background: var(--accent); color: var(--bg); }
+    .carousel-btn.prev { left: -20px; }
+    .carousel-btn.next { right: -20px; }
+
+    /* video card */
+    .video-card {
+      flex: 0 0 320px;
+      scroll-snap-align: start;
+      background: var(--bg2);
+      border: 1px solid rgba(217,162,115,0.1);
+      overflow: hidden;
+      transition: border-color 0.25s, transform 0.25s;
+    }
+    .video-card:hover {
+      border-color: rgba(217,162,115,0.35);
+      transform: translateY(-3px);
+    }
+    .video-embed {
+      position: relative;
+      width: 100%;
+      padding-bottom: 56.25%;
+      background: #0d0704;
+    }
+    .video-embed iframe {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+    .video-info { padding: 1rem 1.25rem 1.25rem; }
+    .video-title {
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 500;
+      font-size: 0.85rem;
+      color: var(--white);
+      margin-bottom: 0.4rem;
+      letter-spacing: 0.02em;
+    }
+    .video-desc {
+      font-size: 0.78rem;
+      color: var(--text-dim);
+      line-height: 1.6;
+    }
+
+    /* tiktok card */
+    .tiktok-card {
+      flex: 0 0 240px;
+      scroll-snap-align: start;
+      background: var(--bg2);
+      border: 1px solid rgba(217,162,115,0.1);
+      overflow: hidden;
+      transition: border-color 0.25s, transform 0.25s;
+      text-decoration: none;
+      display: block;
+    }
+    .tiktok-card:hover {
+      border-color: rgba(217,162,115,0.35);
+      transform: translateY(-3px);
+    }
+    .tiktok-thumb {
+      width: 100%;
+      aspect-ratio: 9/16;
+      background: linear-gradient(135deg, var(--brown) 0%, #0d0704 100%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0.75rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .tiktok-thumb::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.5) 0%, transparent 60%);
+    }
+    .tiktok-play {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: rgba(217,162,115,0.9);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      z-index: 1;
+    }
+    .tiktok-play svg { width: 18px; height: 18px; fill: var(--bg); margin-left: 3px; }
+    .tiktok-logo {
+      position: absolute;
+      bottom: 0.75rem;
+      right: 0.75rem;
+      z-index: 2;
+      font-size: 0.6rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.6);
+    }
+    .tiktok-info { padding: 0.85rem 1rem 1rem; }
+    .tiktok-title {
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: var(--white);
+      margin-bottom: 0.35rem;
+    }
+    .tiktok-desc {
+      font-size: 0.72rem;
+      color: var(--text-dim);
+      line-height: 1.5;
+      margin-bottom: 0.75rem;
+    }
+    .tiktok-link-label {
+      font-size: 0.62rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
+
+    /* coming soon badge */
+    .coming-soon-badge {
+      display: inline-block;
+      font-size: 0.6rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      background: rgba(191,129,94,0.15);
+      border: 1px solid var(--terra);
+      color: var(--terra);
+      padding: 0.2rem 0.6rem;
+      margin-left: 0.75rem;
+    }
+
+    /* ── ABOUT PAGE ── */
+    #about { padding-top: 7rem; }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: start;
+    }
+
+    .about-photo {
+      width: 100%;
+      aspect-ratio: 3/4;
+      object-fit: cover;
+      object-position: top;
+      border: 1px solid rgba(217,162,115,0.15);
+      display: block;
+      background: var(--brown);
+    }
+
+    .about-photo-placeholder {
+      width: 100%;
+      aspect-ratio: 3/4;
+      background: var(--brown);
+      border: 1px solid rgba(217,162,115,0.15);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.7rem;
+      letter-spacing: 0.1em;
+      color: var(--text-dim);
+      text-transform: uppercase;
+    }
+
+    .about-text p {
+      font-size: 1rem;
+      line-height: 1.85;
+      color: var(--text);
+      margin-bottom: 1.25rem;
+    }
+    .about-links {
+      display: flex;
+      gap: 1rem;
+      margin-top: 2rem;
+      flex-wrap: wrap;
+    }
+
+    /* skills */
+    .skills-section { margin-top: 5rem; }
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+    .skill-block {
+      background: rgba(64,31,13,0.3);
+      border: 1px solid rgba(217,162,115,0.1);
+      padding: 1.5rem;
+    }
+    .skill-block-title {
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1rem;
+    }
+    .skill-list {
+      list-style: none;
+    }
+    .skill-list li {
+      font-size: 0.82rem;
+      color: var(--text);
+      padding: 0.35rem 0;
+      border-bottom: 1px solid rgba(217,162,115,0.06);
+      line-height: 1.4;
+    }
+    .skill-list li:last-child { border-bottom: none; }
+
+    /* ── CONTACT PAGE ── */
+    #contact { padding-top: 7rem; }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: start;
+    }
+    .contact-intro p {
+      font-size: 1rem;
+      line-height: 1.8;
+      color: var(--text-dim);
+      margin-top: 1rem;
+    }
+
+    .contact-form { display: flex; flex-direction: column; gap: 1.25rem; }
+    .form-group { display: flex; flex-direction: column; gap: 0.4rem; }
+    .form-label {
+      font-size: 0.65rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--text-dim);
+    }
+    .form-input, .form-textarea {
+      background: rgba(64,31,13,0.3);
+      border: 1px solid rgba(217,162,115,0.2);
+      color: var(--text);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.9rem;
+      padding: 0.85rem 1rem;
+      outline: none;
+      transition: border-color 0.2s;
+      width: 100%;
+    }
+    .form-input:focus, .form-textarea:focus {
+      border-color: var(--accent);
+    }
+    .form-textarea { resize: vertical; min-height: 140px; }
+    .form-input::placeholder, .form-textarea::placeholder { color: var(--text-dim); opacity: 0.5; }
+
+    /* ── FOOTER ── */
+    footer {
+      border-top: 1px solid rgba(217,162,115,0.12);
+      padding: 2rem 2.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    .footer-copy {
+      font-size: 0.72rem;
+      color: var(--text-dim);
+      letter-spacing: 0.05em;
+    }
+    .footer-links {
+      display: flex;
+      gap: 1.5rem;
+    }
+    .footer-links a {
+      font-size: 0.68rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--text-dim);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .footer-links a:hover { color: var(--accent); }
+
+    /* ── PAGE VISIBILITY ── */
+    .page { display: none; }
+    .page.active { display: block; }
+
+    /* ── FADE IN ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .fade-up { animation: fadeUp 0.7s ease forwards; }
+    .fade-up-2 { animation: fadeUp 0.7s 0.15s ease forwards; opacity: 0; }
+    .fade-up-3 { animation: fadeUp 0.7s 0.3s ease forwards; opacity: 0; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+      .about-grid, .contact-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+      .skills-grid { grid-template-columns: 1fr; }
+      .carousel-btn { display: none; }
+      .video-card { flex: 0 0 280px; }
+      .tiktok-card { flex: 0 0 200px; }
+      footer { flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a class="nav-brand" href="#" onclick="showPage('home')">
+      <img id="nav-headshot" class="nav-avatar" src="HEADSHOT_PLACEHOLDER.jpg" alt="Michelle Rupprecht"
+        onerror="this.style.display='none'; document.getElementById('nav-avatar-fallback').style.display='flex';" />
+      <div id="nav-avatar-fallback" class="nav-avatar-placeholder" style="display:none;">MR</div>
+      <div class="nav-name-block">
+        <span class="nav-name">Michelle Rupprecht</span>
+        <span class="nav-title">Video Editor &amp; Media Producer</span>
+      </div>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#" onclick="showPage('home')">Home</a></li>
+      <li><a href="#" onclick="showPage('work')">Work</a></li>
+      <li><a href="#" onclick="showPage('about')">About</a></li>
+      <li><a href="#" onclick="showPage('contact')">Contact</a></li>
+    </ul>
+    <button class="hamburger" onclick="toggleMenu()" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <div class="mobile-menu" id="mobile-menu">
+    <a href="#" onclick="showPage('home'); toggleMenu()">Home</a>
+    <a href="#" onclick="showPage('work'); toggleMenu()">Work</a>
+    <a href="#" onclick="showPage('about'); toggleMenu()">About</a>
+    <a href="#" onclick="showPage('contact'); toggleMenu()">Contact</a>
+  </div>
+
+  <!-- ═══════════════════════════════ HOME ═══════════════════════════════ -->
+  <div id="page-home" class="page active">
+    <section id="home">
+      <div class="container">
+        <h1 class="hero-headline fade-up">
+          <span class="line1">Video Editor.</span>
+          <span class="line2">Storyteller.</span>
+          <span class="line3">Creator.</span>
+        </h1>
+
+        <div class="reel-wrapper fade-up-2">
+          <iframe src="https://player.vimeo.com/video/1045356694?badge=0&autopause=0&player_id=0&app_id=58479"
+            allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media"
+            title="Michelle Rupprecht Demo Reel 2025"></iframe>
+        </div>
+
+        <div class="bio-block fade-up-3">
+          <p>Michelle Rupprecht is a video editor and media producer with 10+ years of experience telling stories across documentary film, narrative production, live broadcast, and social content. From high-profile live events at NBCUniversal — including the Emmys and Grammys — to brand campaigns and creator content, she brings the same precision and creative instinct to every project, no matter the scale.</p>
+          <a href="https://www.linkedin.com/in/rupproductions" target="_blank" class="btn">See Full Experience on LinkedIn</a>
+        </div>
+
+        <div class="clients-strip">
+          <p class="clients-label">Clients &amp; Collaborators</p>
+          <div class="clients-row">
+            <span class="client-name featured">University of Colorado Boulder</span>
+            <span class="client-name featured">City of Boulder</span>
+            <span class="client-name">BARE</span>
+            <span class="client-name">Stahlsac</span>
+            <span class="client-name">Deranged Penguin Productions</span>
+            <span class="client-name">The Solo Salon</span>
+            <span class="client-name">Enercom</span>
+          </div>
+        </div>
+
+        <div class="testimonials">
+          <p class="section-label">What People Say</p>
+          <h2 class="section-title">Kind <span>Words</span></h2>
+          <div class="testi-grid">
+            <div class="testi-card">
+              <p class="testi-text">Michelle brings an unmatched eye for pacing and emotion. Every cut feels intentional.</p>
+              <p class="testi-source">— Client, Documentary Production</p>
+            </div>
+            <div class="testi-card">
+              <p class="testi-text">Working under the pressure of a live broadcast, Michelle was exactly who you want in the edit bay.</p>
+              <p class="testi-source">— Producer, NBCUniversal</p>
+            </div>
+            <div class="testi-card">
+              <p class="testi-text">She turned our raw footage into something we're genuinely proud to share with the world.</p>
+              <p class="testi-source">— Founder, Brand Campaign Client</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- ═══════════════════════════════ WORK ═══════════════════════════════ -->
+  <div id="page-work" class="page">
+    <section id="work">
+      <div class="container">
+        <div class="work-intro">
+          <p class="section-label">Portfolio</p>
+          <h2 class="section-title">Selected <span>Work</span></h2>
+          <p>A showcase of projects spanning social content, branded video, and long-form documentary.</p>
+        </div>
+
+        <!-- SHORT-FORM & SOCIAL -->
+        <div class="work-section">
+          <div class="work-section-header">
+            <h3 class="work-section-title">Short-Form &amp; Social</h3>
+            <span class="coming-soon-badge">In Production</span>
+          </div>
+          <div class="carousel-outer">
+            <button class="carousel-btn prev" onclick="scrollCarousel('carousel-social', -1)">&#8592;</button>
+            <div class="carousel" id="carousel-social">
+
+              <a class="tiktok-card" href="https://www.tiktok.com/t/ZP8gBo4q1/" target="_blank">
+                <div class="tiktok-thumb">
+                  <div class="tiktok-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+                  <span class="tiktok-logo">TikTok</span>
+                </div>
+                <div class="tiktok-info">
+                  <p class="tiktok-title">Creator Content #1</p>
+                  <p class="tiktok-desc">Short-form social content — placeholder for upcoming work.</p>
+                  <span class="tiktok-link-label">Watch on TikTok →</span>
+                </div>
+              </a>
+
+              <a class="tiktok-card" href="https://www.tiktok.com/t/ZP8gS1FuA/" target="_blank">
+                <div class="tiktok-thumb">
+                  <div class="tiktok-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+                  <span class="tiktok-logo">TikTok</span>
+                </div>
+                <div class="tiktok-info">
+                  <p class="tiktok-title">Creator Content #2</p>
+                  <p class="tiktok-desc">Short-form social content — placeholder for upcoming work.</p>
+                  <span class="tiktok-link-label">Watch on TikTok →</span>
+                </div>
+              </a>
+
+              <a class="tiktok-card" href="https://www.tiktok.com/t/ZP8gS1m8J/" target="_blank">
+                <div class="tiktok-thumb">
+                  <div class="tiktok-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+                  <span class="tiktok-logo">TikTok</span>
+                </div>
+                <div class="tiktok-info">
+                  <p class="tiktok-title">Creator Content #3</p>
+                  <p class="tiktok-desc">Short-form social content — placeholder for upcoming work.</p>
+                  <span class="tiktok-link-label">Watch on TikTok →</span>
+                </div>
+              </a>
+
+              <a class="tiktok-card" href="https://www.tiktok.com/t/ZP8gBqLLW/" target="_blank">
+                <div class="tiktok-thumb">
+                  <div class="tiktok-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+                  <span class="tiktok-logo">TikTok</span>
+                </div>
+                <div class="tiktok-info">
+                  <p class="tiktok-title">Creator Content #4</p>
+                  <p class="tiktok-desc">Short-form social content — placeholder for upcoming work.</p>
+                  <span class="tiktok-link-label">Watch on TikTok →</span>
+                </div>
+              </a>
+
+              <a class="tiktok-card" href="https://www.tiktok.com/t/ZP8gBqjLP/" target="_blank">
+                <div class="tiktok-thumb">
+                  <div class="tiktok-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+                  <span class="tiktok-logo">TikTok</span>
+                </div>
+                <div class="tiktok-info">
+                  <p class="tiktok-title">Creator Content #5</p>
+                  <p class="tiktok-desc">Short-form social content — placeholder for upcoming work.</p>
+                  <span class="tiktok-link-label">Watch on TikTok →</span>
+                </div>
+              </a>
+
+            </div>
+            <button class="carousel-btn next" onclick="scrollCarousel('carousel-social', 1)">&#8594;</button>
+          </div>
+        </div>
+
+        <!-- PROMOTIONAL -->
+        <div class="work-section">
+          <div class="work-section-header">
+            <h3 class="work-section-title">Promotional</h3>
+          </div>
+          <div class="carousel-outer">
+            <button class="carousel-btn prev" onclick="scrollCarousel('carousel-promo', -1)">&#8592;</button>
+            <div class="carousel" id="carousel-promo">
+
+              <div class="video-card">
+                <div class="video-embed">
+                  <iframe src="https://player.vimeo.com/video/1045356694?badge=0&autopause=0"
+                    allow="autoplay; fullscreen; picture-in-picture" title="Project Placeholder"></iframe>
+                </div>
+                <div class="video-info">
+                  <p class="video-title">Brand Campaign: BARE</p>
+                  <p class="video-desc">A stylized product campaign blending cinematic lighting with bold social-ready cuts.</p>
+                </div>
+              </div>
+
+              <div class="video-card">
+                <div class="video-embed">
+                  <iframe src="https://player.vimeo.com/video/1045356694?badge=0&autopause=0"
+                    allow="autoplay; fullscreen; picture-in-picture" title="Project Placeholder"></iframe>
+                </div>
+                <div class="video-info">
+                  <p class="video-title">Stahlsac Product Launch</p>
+                  <p class="video-desc">Underwater gear brand needed a promo that captured the thrill of the deep. Delivered.</p>
+                </div>
+              </div>
+
+              <div class="video-card">
+                <div class="video-embed">
+                  <iframe src="https://player.vimeo.com/video/1045356694?badge=0&autopause=0"
+                    allow="autoplay; fullscreen; picture-in-picture" title="Project Placeholder"></iframe>
+                </div>
+                <div class="video-info">
+                  <p class="video-title">Enercom Conference Highlights</p>
+                  <p class="video-desc">Multi-day energy conference captured and condensed into a punchy highlight reel.</p>
+                </div>
+              </div>
+
+              <div class="video-card">
+                <div class="video-embed">
+                  <iframe src="https://player.vimeo.com/video/1045356694?badge=0&autopause=0"
+                    allow="autoplay; fullscreen; picture-in-picture" title="Project Placeholder"></iframe>
+                </div>
+                <div class="video-info">
+                  <p class="video-title">The Solo Salon Brand Story</p>
+                  <p class="video-desc">An intimate brand film for a boutique salon, shot with warmth and editorial precision.</p>
+                </div>
+              </div>
+
+            </div>
+            <button class="carousel-btn next" onclick="scrollCarousel('carousel-promo', 1)">&#8594;</button>
+          </div>
+        </div>
+
+        <!-- LONG-FORM & DOCUMENTARY -->
+        <div class="work-section">
+          <div class="work-section-header">
+            <h3 class="work-section-title">Long-Form &amp; Documentary</h3>
+          </div>
+          <div class="carousel-outer">
+            <button class="carousel-btn prev" onclick="scrollCarousel('carousel-doc', -1)">&#8592;</button>
+            <div class="carousel" id="carousel-doc">
+
+              <div class="video-card">
+                <div class="video-embed">
+                  <iframe src="https://player.vimeo.com/video/1045356694?badge=0&autopause=0"
+                    allow="autoplay; fullscreen; picture-in-picture" title="Project Placeholder"></iframe>
+                </div>
+                <div class="video-info">
+                  <p class="video-title">Documentary Feature</p>
+                  <p class="video-desc">A long-form documentary exploring personal narratives and historical memory.</p>
+                </div>
+              </div>
+
+              <div class="video-card">
+                <div class="video-embed">
+                  <iframe src="https://player.vimeo.com/video/1045356694?badge=0&autopause=0"
+                    allow="autoplay; fullscreen; picture-in-picture" title="Project Placeholder"></iframe>
+                </div>
+                <div class="video-info">
+                  <p class="video-title">Narrative Short</p>
+                  <p class="video-desc">A narrative short film with a focus on character-driven storytelling and visual poetry.</p>
+                </div>
+              </div>
+
+              <div class="video-card">
+                <div class="video-embed">
+                  <iframe src="https://player.vimeo.com/video/1045356694?badge=0&autopause=0"
+                    allow="autoplay; fullscreen; picture-in-picture" title="Project Placeholder"></iframe>
+                </div>
+                <div class="video-info">
+                  <p class="video-title">Personal Film Trailer</p>
+                  <p class="video-desc">A trailer for an original documentary project currently in development.</p>
+                </div>
+              </div>
+
+              <div class="video-card">
+                <div class="video-embed">
+                  <iframe src="https://player.vimeo.com/video/1045356694?badge=0&autopause=0"
+                    allow="autoplay; fullscreen; picture-in-picture" title="Project Placeholder"></iframe>
+                </div>
+                <div class="video-info">
+                  <p class="video-title">University of Colorado Boulder</p>
+                  <p class="video-desc">Institutional documentary work produced for the University of Colorado Boulder.</p>
+                </div>
+              </div>
+
+            </div>
+            <button class="carousel-btn next" onclick="scrollCarousel('carousel-doc', 1)">&#8594;</button>
+          </div>
+        </div>
+
+      </div>
+    </section>
+  </div>
+
+  <!-- ═══════════════════════════════ ABOUT ═══════════════════════════════ -->
+  <div id="page-about" class="page">
+    <section id="about">
+      <div class="container">
+        <p class="section-label">The Person Behind the Edit</p>
+        <h2 class="section-title">About <span>Michelle</span></h2>
+
+        <div class="about-grid">
+          <div>
+            <img id="about-headshot" class="about-photo" src="HEADSHOT_PLACEHOLDER.jpg" alt="Michelle Rupprecht"
+              onerror="this.style.display='none'; document.getElementById('about-photo-fallback').style.display='flex';" />
+            <div id="about-photo-fallback" class="about-photo-placeholder" style="display:none;">Photo Coming Soon</div>
+          </div>
+          <div class="about-text">
+            <p>Michelle Rupprecht is a Denver-based video editor and media producer with over a decade of experience crafting stories that connect, inform, and inspire. Her career spans an unusually wide range of formats — from intimate documentary portraits to the controlled chaos of live awards broadcasts.</p>
+            <p>As part of the NBCUniversal broadcast team, Michelle contributed to coverage of the Emmy Awards and Grammy Awards, working alongside teams who operate at the highest level of the industry. That experience sharpened her instincts for pacing, structure, and delivering polished work under unforgiving deadlines.</p>
+            <p>Beyond broadcast, Michelle has built a strong portfolio in brand storytelling and social content — partnering with organizations like the University of Colorado Boulder, the City of Boulder, BARE, Stahlsac, and Enercom. Whether the project calls for cinematic production value or scrappy creator energy, she knows how to make it work.</p>
+            <div class="about-links">
+              <a href="https://www.linkedin.com/in/rupproductions" target="_blank" class="btn btn-filled">LinkedIn</a>
+              <a href="https://vimeo.com/rupproductions" target="_blank" class="btn">Vimeo</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="skills-section">
+          <p class="section-label">Skills &amp; Tools</p>
+          <h3 class="section-title" style="font-size:2rem;">What I <span>Bring</span></h3>
+          <div class="skills-grid">
+            <div class="skill-block">
+              <p class="skill-block-title">Editing Software</p>
+              <ul class="skill-list">
+                <li>Adobe Premiere Pro</li>
+                <li>CapCut</li>
+                <li>Adobe Illustrator</li>
+                <li>Adobe After Effects</li>
+              </ul>
+            </div>
+            <div class="skill-block">
+              <p class="skill-block-title">Specialties</p>
+              <ul class="skill-list">
+                <li>Documentary Editing</li>
+                <li>Live Broadcast</li>
+                <li>Brand Storytelling</li>
+                <li>Social Content</li>
+                <li>Multi-Platform Video Production</li>
+              </ul>
+            </div>
+            <div class="skill-block">
+              <p class="skill-block-title">Production</p>
+              <ul class="skill-list">
+                <li>Multi-Camera Editing</li>
+                <li>AV Coordination</li>
+                <li>Narrative Post-Production</li>
+                <li>Interview Editing</li>
+                <li>Event Coverage</li>
+                <li>Creative Project Management</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+  </div>
+
+  <!-- ═══════════════════════════════ CONTACT ═══════════════════════════════ -->
+  <div id="page-contact" class="page">
+    <section id="contact">
+      <div class="container">
+        <div class="contact-grid">
+          <div class="contact-intro">
+            <p class="section-label">Get In Touch</p>
+            <h2 class="section-title">Let's Make <span>Something</span></h2>
+            <p>Have a project in mind or want to collaborate? Send a message and Michelle will get back to you.</p>
+          </div>
+          <form class="contact-form" name="contact" method="POST" data-netlify="true">
+            <input type="hidden" name="form-name" value="contact" />
+            <div class="form-group">
+              <label class="form-label" for="name">Name</label>
+              <input class="form-input" type="text" id="name" name="name" placeholder="Your name" required />
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="email">Email</label>
+              <input class="form-input" type="email" id="email" name="email" placeholder="your@email.com" required />
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="message">Message</label>
+              <textarea class="form-textarea" id="message" name="message" placeholder="Tell me about your project..." required></textarea>
+            </div>
+            <button type="submit" class="btn btn-filled" style="align-self:flex-start; cursor:pointer; font-family:inherit;">Send Message</button>
+          </form>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <span class="footer-copy">© 2026 Michelle Rupprecht</span>
+    <div class="footer-links">
+      <a href="https://www.linkedin.com/in/rupproductions" target="_blank">LinkedIn</a>
+      <a href="https://vimeo.com/rupproductions" target="_blank">Vimeo</a>
+    </div>
+  </footer>
+
+  <script>
+    // Page navigation
+    function showPage(name) {
+      document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+      document.getElementById('page-' + name).classList.add('active');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // Mobile menu
+    function toggleMenu() {
+      document.getElementById('mobile-menu').classList.toggle('open');
+    }
+
+    // Carousel scroll
+    function scrollCarousel(id, dir) {
+      const el = document.getElementById(id);
+      el.scrollBy({ left: dir * 340, behavior: 'smooth' });
+    }
+  </script>
+</body>
+</html>
